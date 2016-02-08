@@ -8,8 +8,8 @@ The code is an example of implementing a custom MovieOS-style interface for your
 
 # Global Config
 
-- [UI_PLACEMENT_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/lcars.py#L7) - if set to ```True```, allow you to long-press any widget (except background items) and then drag them to any location. When you release the widget, it's new top and left co-ordinates are printed in the console, which you can use in your code to place the widget there.
-- [DEV_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/lcars.py#L10) - if set to ```True```, will hide the mouse cursor, for example. The mouse cursor is useful during development (on a non-touch screen).
+- [UI_PLACEMENT_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/lcars.py#L7) - if set to ```True```, allows you to long-press any widget (except background items) and then drag them to any location. When you release the widget, it's new top and left co-ordinates are printed in the console, which you can use in your code to place the widget there.
+- [DEV_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/lcars.py#L10) - if set to ```True```, will show the mouse cursor, for example. The mouse cursor is useful during development (on a non-touch screen).
 
 # Credits and Notes
 
