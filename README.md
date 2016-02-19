@@ -5,6 +5,7 @@ Star Trek [LCARS](https://en.wikipedia.org/wiki/LCARS) interface for [Raspberry 
 The code is an example of implementing a custom MovieOS-style interface for your RaspberryPi projects that include the RaspberryPi touch screen (e.g. home automation control panel). The LCARS assets can be replaced with assets from any other style of user interface (e.g. from games, cartoons, or TV series).
 
 [![screenshot 1](screenshot.png)](https://youtu.be/HCEL9O3ie40)
+
 (Click screenshot for a video)
 
 # Global Config
