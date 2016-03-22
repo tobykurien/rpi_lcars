@@ -49,7 +49,7 @@ class ScreenMain(LcarsScreen):
                         layer=4)
         all_sprites.add(LcarsButton(colours.BEIGE, (107, 127), "SENSORS", self.sensorsHandler),
                         layer=4)
-        all_sprites.add(LcarsButton(colours.PURPLE, (107, 262), "GUAGES", self.guagesHandler),
+        all_sprites.add(LcarsButton(colours.PURPLE, (107, 262), "GAUGES", self.guagesHandler),
                         layer=4)
         all_sprites.add(LcarsButton(colours.PEACH, (107, 398), "WEATHER", self.weatherHandler),
                         layer=4)
