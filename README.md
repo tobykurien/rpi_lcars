@@ -19,7 +19,7 @@ The code is an example of implementing a custom MovieOS-style interface for your
 - Screens extend the ```LcarsScreen``` class and define a ```setup()``` method, and optionally the ```handleEvents()``` and ```update()``` methods.
 - The ```setup()``` method initializes the widgets to display. See [lcars_widgets.py](https://github.com/tobykurien/rpi_lcars/blob/master/app/widgets/lcars_widgets.py) for some of the implemented widgets. Currently, only the ```LcarsButton``` can take a click handler (but it is easy to apply this to other widgets).
 - The ```handleEvents()``` method is used to respond to clicks. If this method returns ```True```, the event is "consumed", otherwise other widgets get a chance to act on the event. It is important to call the base class ```LcarsScreen.handleEvent()``` method from inside your ```handleEvent``` to give it a chance to handle things like long-press-to-drag, widget behaviour, etc.
-- The ```update()``` method is called once per frame, allowing the Screen to update how it is drawn. Code in here needs to highly optimized.
+- The ```update()``` method is called once per frame, allowing the Screen to update how it is drawn. Code in here needs to be highly optimized.
 - The method ```loadScreen()``` can be called to open a new Screen. There is no backstack, so you will have to manage the Screen flows manually.
 
 # Launching
@@ -38,7 +38,7 @@ The above assumes you want to run the interface from the ```/home/pi/rpi_lcars``
 # Notes
 
 - Although not implemented in the demo, an interpolator is provided to allow for animations. To see how this can be used, see the [LcarsMoveToMouse](https://github.com/tobykurien/rpi_lcars/blob/master/app/widgets/sprite.py#L67-L89) widget, which smoothly follows screen touches/mouse clicks.
-- The [applyColour()](https://github.com/tobykurien/rpi_lcars/blob/master/app/widgets/sprite.py#L59-L65) method is used to take an image asset of a uniform colour (e.g. white) and change it's colour to any other colour. This is how buttons of various colours are created from one asset. However, currently this is a very simple implementation which results in aliasing artifacts, which is why the buttons look aliased. The advantage of this method is that it is trivial to use it to add highlighting of touches on buttons and keep the number of assets required to a minimum.
+- The [applyColour()](https://github.com/tobykurien/rpi_lcars/blob/master/app/widgets/sprite.py#L59-L65) method is used to take an image asset of a uniform colour (e.g. white) and change its colour to any other colour. This is how buttons of various colours are created from one asset. However, currently this is a very simple implementation which results in aliasing artifacts, which is why the buttons look aliased. The advantage of this method is that it is trivial to use it to add highlighting of touches on buttons and keep the number of assets required to a minimum.
 - If you are using the [Waveshare 5" or 7" touch screen](https://www.adafruit.com/products/2407) (or similar), then you can use the sample ```boot/config.txt``` to get the screen running at the correct resolution, and install a user-space touch driver, like [this one](https://github.com/derekhe/waveshare-7inch-touchscreen-driver) 
 
 # Credits
