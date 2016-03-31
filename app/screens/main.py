@@ -49,7 +49,7 @@ class ScreenMain(LcarsScreen):
                         layer=4)
         all_sprites.add(LcarsButton(colours.BEIGE, (107, 127), "SENSORS", self.sensorsHandler),
                         layer=4)
-        all_sprites.add(LcarsButton(colours.PURPLE, (107, 262), "GAUGES", self.guagesHandler),
+        all_sprites.add(LcarsButton(colours.PURPLE, (107, 262), "GAUGES", self.gaugesHandler),
                         layer=4)
         all_sprites.add(LcarsButton(colours.PEACH, (107, 398), "WEATHER", self.weatherHandler),
                         layer=4)
@@ -93,7 +93,7 @@ class ScreenMain(LcarsScreen):
             for sprite in self.info_text:
                 sprite.visible = False
 
-    def guagesHandler(self, item, event, clock):
+    def gaugesHandler(self, item, event, clock):
         self.hideInfoText()
         self.sensor_gadget.visible = False
         self.dashboard.visible = True
