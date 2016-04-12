@@ -36,6 +36,10 @@ class LcarsWidget(pygame.sprite.DirtySprite):
         screen.blit(self.image, self.rect)
 
     def handleEvent(self, event, clock):
+        if not self.visible:
+            self.focussed = False
+            return
+        
         if self.groups()[0].UI_PLACEMENT_MODE:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 self.pressed_time = pygame.time.get_ticks()
@@ -69,6 +73,7 @@ class LcarsMoveToMouse(LcarsWidget):
     def __init__(self, color):
         self.image = None
         LcarsWidget.__init__(self, color, (0,0), (10,10))
+        self.focussed = True
 
     def handleEvent(self, event, clock):
         if event.type == pygame.MOUSEBUTTONDOWN:
