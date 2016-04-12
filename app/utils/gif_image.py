@@ -85,7 +85,8 @@ class GIFImage(object):
                 else:
                     palette = base_palette
 
-                pi = pygame.image.fromstring(image.tobytes(), image.size, image.mode)
+                imgdata = image.tobytes() if (hasattr(image, "tobytes")) else image.tostring()
+                pi = pygame.image.fromstring(imgdata, image.size, image.mode)
                 pi.set_palette(palette)
                 if "transparency" in image.info:
                     pi.set_colorkey(image.info["transparency"])
