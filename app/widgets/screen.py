@@ -8,6 +8,10 @@ class LcarsScreen:
         self.lastFrameTicks = 0
     
     def setup(self):
+        """
+        Set up the screen widgets. self.params may contain parameters if 
+        passed from previous screen
+        """
         pass
 
     def getDeltaTime(self, fpsClock):
@@ -31,11 +35,12 @@ class LcarsScreen:
         """
         return False
     
-    def loadScreen(self, newScreen):
+    def loadScreen(self, newScreen, params={}):
         """
         Queue up the next screen to load. 
         """
         self.nextScreen = newScreen
+        self.nextScreen.params = params
         
     def getNextScreen(self):
         """
