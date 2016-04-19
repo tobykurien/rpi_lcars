@@ -73,11 +73,11 @@ class ScreenMain(LcarsScreen):
         self.beep1 = Sound("assets/audio/panel/201.wav")
         Sound("assets/audio/panel/220.wav").play()
 
-    def update(self, fpsClock):
+    def update(self, screenSurface, fpsClock):
         if pygame.time.get_ticks() - self.lastClockUpdate > 1000:
             self.stardate.setText("STAR DATE {}".format(datetime.now().strftime("%d%m.%y %H:%M:%S")))
             self.lastClockUpdate = pygame.time.get_ticks()
-        LcarsScreen.update(self, fpsClock)
+        LcarsScreen.update(self, screenSurface, fpsClock)
         
     def handleEvents(self, event, fpsClock):
         LcarsScreen.handleEvents(self, event, fpsClock)

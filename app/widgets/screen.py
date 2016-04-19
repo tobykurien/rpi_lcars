@@ -23,7 +23,7 @@ class LcarsScreen:
         self.lastFrameTicks = t
         return deltaTime
     
-    def update(self, fpsClock):
+    def update(self, screenSurface, fpsClock):
         """
         Called every frame to run any UI updates 
         """

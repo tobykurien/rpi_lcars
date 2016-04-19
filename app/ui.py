@@ -25,7 +25,7 @@ class UI:
         self.running = True
 
     def update(self):
-        self.screen.update(self.fpsClock)
+        self.screen.update(self.screenSurface, self.fpsClock)
         self.all_sprites.update(self.screenSurface)
         pygame.display.update()
     
