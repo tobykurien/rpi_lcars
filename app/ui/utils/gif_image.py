@@ -3,8 +3,8 @@
 from PIL import Image
 import pygame
 from pygame.locals import *
-
 import time
+
 
 class GIFImage(object):
     def __init__(self, filename, duration=-1):

@@ -1,5 +1,5 @@
 import pygame
-from utils.interpolator import Interpolator
+from ui.utils.interpolator import Interpolator
 
 class LcarsWidget(pygame.sprite.DirtySprite):
     """Base class for all widgets"""

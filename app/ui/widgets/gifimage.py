@@ -1,5 +1,5 @@
-from widgets.sprite import LcarsWidget
-from utils.gif_image import GIFImage
+from ui.utils.gif_image import GIFImage
+from ui.widgets.sprite import LcarsWidget
 
 class LcarsGifImage(LcarsWidget):
     

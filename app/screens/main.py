@@ -1,13 +1,13 @@
+from datetime import datetime
 import pygame
 from pygame.mixer import Sound
 
-from widgets import colours
-from widgets.background import LcarsBackgroundImage, LcarsImage
-from widgets.gifimage import LcarsGifImage
-from widgets.lcars_widgets import LcarsText, LcarsButton
-from widgets.screen import LcarsScreen
-from widgets.sprite import LcarsMoveToMouse
-from datetime import datetime
+from ui import colours
+from ui.widgets.background import LcarsBackgroundImage, LcarsImage
+from ui.widgets.gifimage import LcarsGifImage
+from ui.widgets.lcars_widgets import LcarsText, LcarsButton
+from ui.widgets.screen import LcarsScreen
+from ui.widgets.sprite import LcarsMoveToMouse
 
 class ScreenMain(LcarsScreen):
     def setup(self, all_sprites):

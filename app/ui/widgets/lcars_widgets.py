@@ -3,8 +3,9 @@ from pygame.font import Font
 from pygame.locals import *
 from pygame.mixer import Sound
 
-from sprite import LcarsWidget
-from widgets import colours
+from ui.widgets.sprite import LcarsWidget
+from ui import colours
+
 
 class LcarsElbow(LcarsWidget):
     """The LCARS corner elbow - not currently used"""

@@ -1,10 +1,12 @@
-from widgets.background import LcarsBackgroundImage
-from widgets import colours
-from widgets.lcars_widgets import LcarsText
-from widgets.screen import LcarsScreen
 import pygame
 from pygame.mixer import Sound
-from widgets.gifimage import LcarsGifImage
+
+from ui import colours
+from ui.widgets.background import LcarsBackgroundImage
+from ui.widgets.gifimage import LcarsGifImage
+from ui.widgets.lcars_widgets import LcarsText
+from ui.widgets.screen import LcarsScreen
+
 
 class ScreenAuthorize(LcarsScreen):
 

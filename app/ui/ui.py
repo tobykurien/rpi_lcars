@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-class UI:
+class UserInterface:
     def __init__(self, screen, resolution=(800,480), 
                  ui_placement_mode=False, fps=60, dev_mode=False,
                  audio=(22050, -8, 1, 1024)):
@@ -25,6 +25,7 @@ class UI:
         self.running = True
 
     def update(self):
+        self.screen.pre_update(self.screenSurface, self.fpsClock)
         self.all_sprites.update(self.screenSurface)
         self.screen.update(self.screenSurface, self.fpsClock)
         pygame.display.update()
