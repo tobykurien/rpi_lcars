@@ -15,7 +15,7 @@ The code is an example of implementing a custom MovieOS-style interface for your
 
 # Usage
 
-- The starting point for modifying this interface to your needs is [the initial Screen that is loaded](https://github.com/tobykurien/rpi_lcars/blob/master/app/lcars.py#L10), which is ```ScreenAuthorize```. The Screens are defined in the ```screens``` folder.
+- The starting point for modifying this interface to your needs is [the initial Screen that is loaded](https://github.com/tobykurien/rpi_lcars/blob/master/app/lcars.py#L11), which is ```ScreenAuthorize```. The Screens are defined in the ```screens``` folder.
 - Screens extend the [```LcarsScreen```](https://github.com/tobykurien/rpi_lcars/blob/master/app/ui/widgets/screen.py) class and define a ```setup()``` method, and optionally the ```handleEvents()``` and ```update()``` methods.
 - The ```setup()``` method initializes the widgets to display. See [lcars_widgets.py](https://github.com/tobykurien/rpi_lcars/blob/master/app/ui/widgets/lcars_widgets.py) for some of the implemented widgets. Currently, only the ```LcarsButton``` can take a click handler (but it is easy to apply this to other widgets).
 - The ```handleEvents()``` method is used to respond to clicks. If this method returns ```True```, the event is "consumed", otherwise other widgets get a chance to act on the event. It is important to call the base class ```LcarsScreen.handleEvent()``` method from inside your ```handleEvent``` to give it a chance to handle things like long-press-to-drag, widget behaviour, etc.

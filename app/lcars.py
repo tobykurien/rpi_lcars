@@ -7,7 +7,9 @@ RESOLUTION = (800, 480)
 FPS = 60
 DEV_MODE = True
 
-firstScreen = ScreenAuthorize()
-ui = UserInterface(firstScreen, RESOLUTION, UI_PLACEMENT_MODE, FPS, DEV_MODE)
-while (True):
-    ui.tick()
+if __name__ == "__main__":
+    firstScreen = ScreenAuthorize()
+    ui = UserInterface(firstScreen, RESOLUTION, UI_PLACEMENT_MODE, FPS, DEV_MODE)
+
+    while (True):
+        ui.tick()
