@@ -19,13 +19,7 @@ class ScreenMain(LcarsScreen):
                         layer=1)
         all_sprites.add(LcarsText(colours.ORANGE, (0, 135), "HOME AUTOMATION", 2),
                         layer=1)
-        all_sprites.add(LcarsText(colours.BLACK, (183, 74), "LIGHTS"),
-                        layer=1)
-        all_sprites.add(LcarsText(colours.BLACK, (222, 57), "CAMERAS"),
-                        layer=1)
-        all_sprites.add(LcarsText(colours.BLACK, (372, 70), "ENERGY"),
-                        layer=1)
-        all_sprites.add(LcarsText(colours.BLACK, (444, 612), "192 168 0 3"),
+	all_sprites.add(LcarsText(colours.BLACK, (444, 612), "192 168 0 3"),
                         layer=1)
 
         # info text
@@ -45,13 +39,13 @@ class ScreenMain(LcarsScreen):
         all_sprites.add(self.stardate, layer=1)
 
         # buttons        
-        all_sprites.add(LcarsButton(colours.RED_BROWN, (6, 662), "LOGOUT", self.logoutHandler),
+        all_sprites.add(LcarsButton(colours.RED_BROWN, "rounded", (6, 662), "LOGOUT", self.logoutHandler),
                         layer=4)
-        all_sprites.add(LcarsButton(colours.BEIGE, (107, 127), "SENSORS", self.sensorsHandler),
+        all_sprites.add(LcarsButton(colours.BEIGE, "rect", (145, 15), "SENSORS", self.sensorsHandler),
                         layer=4)
-        all_sprites.add(LcarsButton(colours.PURPLE, (107, 262), "GAUGES", self.gaugesHandler),
+        all_sprites.add(LcarsButton(colours.PURPLE, "rect", (200, 15), "GAUGES", self.gaugesHandler),
                         layer=4)
-        all_sprites.add(LcarsButton(colours.PEACH, (107, 398), "WEATHER", self.weatherHandler),
+        all_sprites.add(LcarsButton(colours.PEACH, "rect", (255, 15), "WEATHER", self.weatherHandler),
                         layer=4)
 
         # gadgets        
