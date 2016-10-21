@@ -106,7 +106,7 @@ class ScreenMain(LcarsScreen):
         self.weather.visible = True
     
     def logoutHandler(self, item, event, clock):
-        from screens.authorize import ScreenAuthorize
-        self.loadScreen(ScreenAuthorize())
+        from screens.idle import ScreenIdle
+        self.loadScreen(ScreenIdle())
     
     
