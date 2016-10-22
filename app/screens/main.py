@@ -39,13 +39,13 @@ class ScreenMain(LcarsScreen):
         all_sprites.add(self.stardate, layer=1)
 
         # buttons        
-        all_sprites.add(LcarsButton(colours.RED_BROWN, "rounded", (6, 662), "LOGOUT", self.logoutHandler),
+        all_sprites.add(LcarsButton(colours.RED_BROWN, "btn", (6, 662), "LOGOUT", self.logoutHandler),
                         layer=4)
-        all_sprites.add(LcarsButton(colours.BEIGE, "rect", (145, 15), "SENSORS", self.sensorsHandler),
+        all_sprites.add(LcarsButton(colours.BEIGE, "nav", (145, 15), "SENSORS", self.sensorsHandler),
                         layer=4)
-        all_sprites.add(LcarsButton(colours.PURPLE, "rect", (200, 15), "GAUGES", self.gaugesHandler),
+        all_sprites.add(LcarsButton(colours.PURPLE, "nav", (200, 15), "GAUGES", self.gaugesHandler),
                         layer=4)
-        all_sprites.add(LcarsButton(colours.PEACH, "rect", (255, 15), "WEATHER", self.weatherHandler),
+        all_sprites.add(LcarsButton(colours.PEACH, "nav", (255, 15), "WEATHER", self.weatherHandler),
                         layer=4)
 
         # gadgets        

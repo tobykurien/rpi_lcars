@@ -11,9 +11,9 @@ class LcarsButton(LcarsWidget):
         self.handler = handler
 
         # Load different image for shape
-        if (shape == "rect"):
-            image = pygame.image.load("assets/rectangle.png").convert()
-        elif (shape == "rounded"):
+        if (shape == "nav"):
+            image = pygame.image.load("assets/nav.png").convert()
+        elif (shape == "btn"):
             image = pygame.image.load("assets/button.png").convert()
 
         size = (image.get_rect().width, image.get_rect().height)
@@ -21,11 +21,11 @@ class LcarsButton(LcarsWidget):
         textImage = font.render(text, False, colours.BLACK)
 
         # Change text position
-        if (shape == "rect"):
+        if (shape == "nav"):
             image.blit(textImage,
                    (image.get_rect().width - textImage.get_rect().width - 18,
                     image.get_rect().height - textImage.get_rect().height - 12))
-        elif (shape == "rounded"):
+        elif (shape == "btn"):
             image.blit(textImage,
                    (image.get_rect().width - textImage.get_rect().width - 10,
                     image.get_rect().height - textImage.get_rect().height - 5))
