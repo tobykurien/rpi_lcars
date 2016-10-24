@@ -23,8 +23,8 @@ class LcarsButton(LcarsWidget):
         # Change text position
         if (shape == "nav"):
             image.blit(textImage,
-                   (image.get_rect().width - textImage.get_rect().width - 18,
-                    image.get_rect().height - textImage.get_rect().height - 12))
+                   (image.get_rect().width - textImage.get_rect().width - 12,
+                    image.get_rect().height - textImage.get_rect().height))
         elif (shape == "btn"):
             image.blit(textImage,
                    (image.get_rect().width - textImage.get_rect().width - 10,
