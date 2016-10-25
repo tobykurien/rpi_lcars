@@ -65,11 +65,9 @@ class ScreenAuthorize(LcarsScreen):
         for sprite in self.layer2: sprite.visible = False
 
     def handleEvents(self, event, fpsClock):
-        handled = LcarsScreen.handleEvents(self, event, fpsClock)
-
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Play sound
-            if not handled: self.sound_beep1.play()
+            self.sound_beep1.play()
 
         if event.type == pygame.MOUSEBUTTONUP:
             if (not self.layer2[0].visible):
