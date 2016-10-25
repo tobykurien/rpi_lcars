@@ -14,6 +14,9 @@ class ScreenAuthorize(LcarsScreen):
         all_sprites.add(LcarsBackgroundImage("assets/lcars_screen_2.png"),
                         layer=0)
 
+        all_sprites.add(LcarsGifImage("assets/gadgets/stlogorotating.gif", (103, 369), 50), 
+                        layer=0)        
+
         all_sprites.add(LcarsText(colours.ORANGE, (270, -1), "AUTHORIZATION REQUIRED", 2),
                         layer=0)
 
@@ -25,7 +28,6 @@ class ScreenAuthorize(LcarsScreen):
         
         #all_sprites.add(LcarsText(colours.BLUE, (390, -1), "FAILED ATTEMPTS WILL BE REPORTED", 1.5),layer=1)
 
-        all_sprites.add(LcarsGifImage("assets/gadgets/stlogorotating.gif", (103, 369), 50), layer=1)        
 
         all_sprites.add(LcarsButton(colours.GREY_BLUE, (320, 130), "1", self.num_1), layer=2)
         all_sprites.add(LcarsButton(colours.GREY_BLUE, (370, 130), "2", self.num_2), layer=2)
