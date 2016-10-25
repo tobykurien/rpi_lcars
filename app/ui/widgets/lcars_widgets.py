@@ -44,18 +44,23 @@ class LcarsTab(LcarsWidget):
         self.applyColour(colour)
 
 class LcarsButton(LcarsWidget):
-    def __init__(self, colour, pos, text, handler=None):
-        self.handler = handler
-        image = pygame.image.load("assets/button.png").convert()
-        size = (image.get_rect().width, image.get_rect().height)
+    def __init__(self, colour, pos, text, handler=None, rectSize=None):
+        if rectSize == None:
+            image = pygame.image.load("assets/button.png").convert()
+            size = (image.get_rect().width, image.get_rect().height)
+        else:
+            size = rectSize
+            image = pygame.Surface(rectSize).convert()
+            image.fill(colour)
+
+        self.colour = colour
+        self.image = image
         font = Font("assets/swiss911.ttf", 19)
         textImage = font.render(text, False, colours.BLACK)
         image.blit(textImage, 
-                   (image.get_rect().width - textImage.get_rect().width - 10,
+                (image.get_rect().width - textImage.get_rect().width - 10,
                     image.get_rect().height - textImage.get_rect().height - 5))
-
-        self.image = image
-        self.colour = colour
+    
         LcarsWidget.__init__(self, colour, pos, size, handler)
         self.applyColour(colour)
         self.highlighted = False
@@ -94,18 +99,19 @@ class LcarsText(LcarsWidget):
     def setText(self, newText):
         self.renderText(newText)
 
-class LcarsBlockLarge(LcarsWidget):
-    def __init__(self, colour, pos):
-        size = (100, 70)
-        LcarsWidget.__init__(self, colour, pos, size)
+class LcarsBlockLarge(LcarsButton):
+    def __init__(self, colour, pos, text, handler=None):
+        size = (98, 147)
+        LcarsButton.__init__(self, colour, pos, text, handler, size)
 
-class LcarsBlockSmall(LcarsWidget):
-    def __init__(self, colour, pos):
-        size = (100, 20)
-        LcarsWidget.__init__(self, colour, pos, size)
-        
-class LcarsTabBlock(LcarsWidget):
-    def __init__(self, colour, pos):
-        size = (160, 45)
-        LcarsWidget.__init__(self, colour, pos, size)        
-        
+class LcarsBlockMedium(LcarsButton):
+    def __init__(self, colour, pos, text, handler=None):
+        size = (98, 62)
+        LcarsButton.__init__(self, colour, pos, text, handler, size)
+
+class LcarsBlockSmall(LcarsButton):
+    def __init__(self, colour, pos, text, handler=None):
+        size = (98, 34)
+        LcarsButton.__init__(self, colour, pos, text, handler, size)
+
+    

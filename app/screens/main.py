@@ -5,7 +5,7 @@ from pygame.mixer import Sound
 from ui import colours
 from ui.widgets.background import LcarsBackgroundImage, LcarsImage
 from ui.widgets.gifimage import LcarsGifImage
-from ui.widgets.lcars_widgets import LcarsText, LcarsButton
+from ui.widgets.lcars_widgets import *
 from ui.widgets.screen import LcarsScreen
 from ui.widgets.sprite import LcarsMoveToMouse
 
@@ -15,15 +15,15 @@ class ScreenMain(LcarsScreen):
                         layer=0)
         
         # panel text
-        all_sprites.add(LcarsText(colours.BLACK, (11, 52), "LCARS 105"),
+        all_sprites.add(LcarsText(colours.BLACK, (15, 44), "LCARS 105"),
                         layer=1)
         all_sprites.add(LcarsText(colours.ORANGE, (0, 135), "HOME AUTOMATION", 2),
                         layer=1)
-        all_sprites.add(LcarsText(colours.BLACK, (183, 74), "LIGHTS"),
+        all_sprites.add(LcarsBlockMedium(colours.RED_BROWN, (145, 16), "LIGHTS"),
                         layer=1)
-        all_sprites.add(LcarsText(colours.BLACK, (222, 57), "CAMERAS"),
+        all_sprites.add(LcarsBlockSmall(colours.ORANGE, (211, 16), "CAMERAS"),
                         layer=1)
-        all_sprites.add(LcarsText(colours.BLACK, (372, 70), "ENERGY"),
+        all_sprites.add(LcarsBlockLarge(colours.BEIGE, (249, 16), "ENERGY"),
                         layer=1)
         all_sprites.add(LcarsText(colours.BLACK, (444, 612), "192 168 0 3"),
                         layer=1)
