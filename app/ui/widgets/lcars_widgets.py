@@ -63,6 +63,7 @@ class LcarsButton(LcarsWidget):
 
     def handleEvent(self, event, clock):
         handled = False
+        if not self.visible: return handled
         
         if (event.type == MOUSEBUTTONDOWN and self.rect.collidepoint(event.pos)):
             self.applyColour(colours.WHITE)
