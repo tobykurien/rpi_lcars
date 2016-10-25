@@ -56,7 +56,7 @@ class LcarsButton(LcarsWidget):
 
         self.image = image
         self.colour = colour
-        LcarsWidget.__init__(self, colour, pos, size)
+        LcarsWidget.__init__(self, colour, pos, size, handler)
         self.applyColour(colour)
         self.highlighted = False
         self.beep = Sound("assets/audio/panel/202.wav")
@@ -73,12 +73,8 @@ class LcarsButton(LcarsWidget):
 
         if (event.type == MOUSEBUTTONUP and self.highlighted):
             self.applyColour(self.colour)
-            if self.handler:
-                self.handler(self, event, clock)
-                handled = True
-            
-        LcarsWidget.handleEvent(self, event, clock)
-        return handled
+           
+        return LcarsWidget.handleEvent(self, event, clock)
         
 class LcarsText(LcarsWidget):
     def __init__(self, colour, pos, message, size=1.0, background=None):

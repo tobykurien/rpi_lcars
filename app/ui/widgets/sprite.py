@@ -4,7 +4,7 @@ from ui.utils.interpolator import Interpolator
 class LcarsWidget(pygame.sprite.DirtySprite):
     """Base class for all widgets"""
 
-    def __init__(self, color, pos, size):
+    def __init__(self, color, pos, size, handler=None):
         pygame.sprite.DirtySprite.__init__(self)
         if self.image == None:
             self.image = pygame.Surface(size).convert()
@@ -19,6 +19,7 @@ class LcarsWidget(pygame.sprite.DirtySprite):
         self.pressed_time = 0            
         self.focussed = False
         self.line = None
+        self.handler = handler
 
     def update(self, screen):
         if not self.visible:
@@ -36,9 +37,10 @@ class LcarsWidget(pygame.sprite.DirtySprite):
         screen.blit(self.image, self.rect)
 
     def handleEvent(self, event, clock):
+        handled = False
         if not self.visible:
             self.focussed = False
-            return
+            return handled
         
         if self.groups()[0].UI_PLACEMENT_MODE:
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -53,12 +55,18 @@ class LcarsWidget(pygame.sprite.DirtySprite):
                     self.dirty = 1            
     
             if event.type == pygame.MOUSEBUTTONUP:
+                if self.handler:
+                    self.handler(self, event, clock)
+                    handled = True
+                
                 if self.focussed and self.long_pressed:
                     print event.pos[1], event.pos[0]
                     
                 self.pressed_time = 0
                 self.long_pressed = False
                 self.focussed = False
+                
+        return handled
 
     def applyColour(self, colour):
         """Convert non-black areas of an image to specified colour"""
