@@ -80,8 +80,6 @@ class ScreenMain(LcarsScreen):
         LcarsScreen.update(self, screenSurface, fpsClock)
         
     def handleEvents(self, event, fpsClock):
-        LcarsScreen.handleEvents(self, event, fpsClock)
-        
         if event.type == pygame.MOUSEBUTTONDOWN:
             self.beep1.play()
 

@@ -15,7 +15,7 @@ class LcarsElbow(LcarsWidget):
     STYLE_BOTTOM_RIGHT = 2
     STYLE_TOP_RIGHT = 3
     
-    def __init__(self, colour, style, pos):
+    def __init__(self, colour, style, pos, handler=None):
         image = pygame.image.load("assets/elbow.png").convert()
         if (style == LcarsElbow.STYLE_BOTTOM_LEFT):
             image = pygame.transform.flip(image, False, True)
@@ -26,24 +26,28 @@ class LcarsElbow(LcarsWidget):
         
         self.image = image
         size = (image.get_rect().width, image.get_rect().height)
-        LcarsWidget.__init__(self, colour, pos, size)
+        LcarsWidget.__init__(self, colour, pos, size, handler)
         self.applyColour(colour)
 
 class LcarsTab(LcarsWidget):
+    """Tab widget (like radio button) - not currently used nor implemented"""
+
     STYLE_LEFT = 1
     STYLE_RIGHT = 2
     
-    def __init__(self, colour, style, pos):
+    def __init__(self, colour, style, pos, handler=None):
         image = pygame.image.load("assets/tab.png").convert()
         if (style == LcarsTab.STYLE_RIGHT):
             image = pygame.transform.flip(image, False, True)
         
         size = (image.get_rect().width, image.get_rect().height)
-        LcarsWidget.__init__(self, colour, pos, size)
+        LcarsWidget.__init__(self, colour, pos, size, handler)
         self.image = image
         self.applyColour(colour)
 
 class LcarsButton(LcarsWidget):
+    """Button - either rounded or rectangular if rectSize is spcified"""
+
     def __init__(self, colour, pos, text, handler=None, rectSize=None):
         if rectSize == None:
             image = pygame.image.load("assets/button.png").convert()
@@ -78,7 +82,9 @@ class LcarsButton(LcarsWidget):
         return LcarsWidget.handleEvent(self, event, clock)
         
 class LcarsText(LcarsWidget):
-    def __init__(self, colour, pos, message, size=1.0, background=None):
+    """Text that can be placed anywhere"""
+
+    def __init__(self, colour, pos, message, size=1.0, background=None, handler=None):
         self.colour = colour
         self.background = background
         self.font = Font("assets/swiss911.ttf", int(19.0 * size))
@@ -88,7 +94,7 @@ class LcarsText(LcarsWidget):
         if (pos[1] < 0):
             pos = (pos[0], 400 - self.image.get_rect().width / 2)
             
-        LcarsWidget.__init__(self, colour, pos, None)
+        LcarsWidget.__init__(self, colour, pos, None, handler)
 
     def renderText(self, message):        
         if (self.background == None):
@@ -100,17 +106,23 @@ class LcarsText(LcarsWidget):
         self.renderText(newText)
 
 class LcarsBlockLarge(LcarsButton):
+    """Left navigation block - large version"""
+
     def __init__(self, colour, pos, text, handler=None):
         size = (98, 147)
         LcarsButton.__init__(self, colour, pos, text, handler, size)
 
 class LcarsBlockMedium(LcarsButton):
-    def __init__(self, colour, pos, text, handler=None):
+   """Left navigation block - medium version"""
+
+   def __init__(self, colour, pos, text, handler=None):
         size = (98, 62)
         LcarsButton.__init__(self, colour, pos, text, handler, size)
 
 class LcarsBlockSmall(LcarsButton):
-    def __init__(self, colour, pos, text, handler=None):
+   """Left navigation block - small version"""
+
+   def __init__(self, colour, pos, text, handler=None):
         size = (98, 34)
         LcarsButton.__init__(self, colour, pos, text, handler, size)
 
