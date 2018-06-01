@@ -9,7 +9,8 @@ from ui.widgets.lcars_widgets import *
 from ui.widgets.screen import LcarsScreen
 from ui.widgets.sprite import LcarsMoveToMouse
 
-import socket
+from datasources.network import local_ip_address
+
 
 class ScreenMain(LcarsScreen):
     def setup(self, all_sprites):
@@ -28,11 +29,7 @@ class ScreenMain(LcarsScreen):
         all_sprites.add(LcarsBlockLarge(colours.BEIGE, (249, 16), "ENERGY"),
                         layer=1)
 
-        # IP address
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(('8.8.8.8', 1))
-        local_ip_address = s.getsockname()[0]
-        self.ip_address = LcarsText(colours.BLACK, (444, 608), local_ip_address)
+        self.ip_address = LcarsText(colours.BLACK, (444, 608), local_ip_address())
         all_sprites.add(self.ip_address, layer=1)
 
         # info text
