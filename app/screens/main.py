@@ -9,7 +9,7 @@ from ui.widgets.lcars_widgets import *
 from ui.widgets.screen import LcarsScreen
 from ui.widgets.sprite import LcarsMoveToMouse
 
-from datasources.network import local_ip_address
+from datasources.network import get_ip_address_string
 
 
 class ScreenMain(LcarsScreen):
@@ -29,7 +29,8 @@ class ScreenMain(LcarsScreen):
         all_sprites.add(LcarsBlockLarge(colours.BEIGE, (249, 16), "ENERGY"),
                         layer=1)
 
-        self.ip_address = LcarsText(colours.BLACK, (444, 608), local_ip_address())
+        self.ip_address = LcarsText(colours.BLACK, (444, 520),
+                                    get_ip_address_string())
         all_sprites.add(self.ip_address, layer=1)
 
         # info text

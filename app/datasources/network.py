@@ -1,37 +1,38 @@
-import errno
-import socket
+import psutil
 
 
-def local_ip_address():
+def get_ip_address_string():
     """
-    Returns the IP address of the machine we're running on.
+    Consolidates a list of IP addresses into a string, stripping out any blank
+    entries as well as the local `127.0.0.1` entry.
+    """
+    return reduce(lambda str, addr: str + ', ' + addr,
+                  get_ip_addresses())
 
-    If the test socket cannot connect for any reason, returns a string that
-    attempts to describe the problem (sort of). At the moment, a machine that
-    is connected to a LAN that doesn't have a route to the internet will return
-    'LOCAL ONLY'; a different method of obtaining the IP address will probably
-    be needed in those instances.
 
-    In the future this function should possibly be converted to a service that
-    automatically updates if the status of the network changes, but that would
-    obviously be a large overhaul of the entire system (basically switching
-    widgets to a publish/subscribe model).
+def get_ip_addresses():
+    """
+    Returns all the IP addresses of the machine we're running on.
+    Shamelessly derived from:
+        https://stackoverflow.com/questions/270745/how-do-i-determine-all-of-my-ip-addresses-when-i-have-multiple-nics
     """
 
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(('8.8.8.8', 1))
-        result = s.getsockname()[0]
-    except IOError as e:
-        result = errno_message(e.errno)
+    ip_list = filter(
+        lambda ip: ip is not None and ip != '127.0.0.1',
+        [interface_to_ip(v) for v in psutil.net_if_addrs().values()])
 
-    return result
+    return ip_list
 
 
-def errno_message(err):
-    lookup = {
-        100: 'OFFLINE',
-        101: 'NO NETWORK',
-        113: 'LOCAL ONLY'
-    }
-    return lookup.get(err, 'NET ERROR {0}'.format(err))
+def interface_to_ip(interface):
+    """
+    Gets the IPv4 address from a `net_if_addrs` interface record.
+    The record is passed as a `snic` `namedtuple`.
+    This function locates the IPv4 one and returns it.
+    """
+    for record in interface:
+        if record.family == 2:  # AF_INET
+            return record.address
+
+    return None
+
