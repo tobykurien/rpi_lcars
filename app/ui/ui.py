@@ -14,7 +14,10 @@ class UserInterface:
         self.fpsClock = pygame.time.Clock()
         self.fps = fps
         pygame.display.set_caption("LCARS")
-        if not dev_mode: pygame.mouse.set_visible(False)
+        if not dev_mode: 
+            # see https://github.com/tobykurien/rpi_lcars/issues/9
+            #pygame.mouse.set_visible(False)
+            pygame.mouse.set_cursor((8,8),(0,0),(0,0,0,0,0,0,0,0),(0,0,0,0,0,0,0,0))
         
         # set up screen elements
         self.all_sprites = pygame.sprite.LayeredDirty()

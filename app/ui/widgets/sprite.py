@@ -42,29 +42,29 @@ class LcarsWidget(pygame.sprite.DirtySprite):
             self.focussed = False
             return handled
         
-        if self.groups()[0].UI_PLACEMENT_MODE:
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                self.pressed_time = pygame.time.get_ticks()
-                self.focussed = True
-                    
-            if event.type == pygame.MOUSEMOTION:
-                if (self.focussed and pygame.time.get_ticks() - self.pressed_time > 1000):
-                    self.long_pressed = True
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            self.pressed_time = pygame.time.get_ticks()
+            self.focussed = True
+                
+        if event.type == pygame.MOUSEMOTION:
+            if (self.focussed and pygame.time.get_ticks() - self.pressed_time > 1000):
+                self.long_pressed = True
+                if self.groups()[0].UI_PLACEMENT_MODE:
                     self.rect.top = event.pos[1]
                     self.rect.left = event.pos[0]
                     self.dirty = 1            
-    
-            if event.type == pygame.MOUSEBUTTONUP:
-                if self.handler:
-                    self.handler(self, event, clock)
-                    handled = True
+
+        if event.type == pygame.MOUSEBUTTONUP:
+            if self.handler:
+                self.handler(self, event, clock)
+                handled = True
+            
+            if self.focussed and self.long_pressed and self.groups()[0].UI_PLACEMENT_MODE:
+                print(event.pos[1], event.pos[0])
                 
-                if self.focussed and self.long_pressed:
-                    print(event.pos[1], event.pos[0])
-                    
-                self.pressed_time = 0
-                self.long_pressed = False
-                self.focussed = False
+            self.pressed_time = 0
+            self.long_pressed = False
+            self.focussed = False
                 
         return handled
 
