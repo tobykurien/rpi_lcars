@@ -1,3 +1,4 @@
 pygame>=1.9.1
-pil>=1.1.6
+pillow
+psutil
 
