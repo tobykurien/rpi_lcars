@@ -60,7 +60,7 @@ class LcarsWidget(pygame.sprite.DirtySprite):
                     handled = True
                 
                 if self.focussed and self.long_pressed:
-                    print event.pos[1], event.pos[0]
+                    print(event.pos[1], event.pos[0])
                     
                 self.pressed_time = 0
                 self.long_pressed = False

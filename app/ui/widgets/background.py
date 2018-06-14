@@ -1,4 +1,4 @@
-from sprite import LcarsWidget
+from ui.widgets.sprite import LcarsWidget
 import pygame
 
 class LcarsBackground(LcarsWidget):
