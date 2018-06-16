@@ -1,4 +1,5 @@
 import psutil
+from functools import reduce
 
 
 def get_ip_address_string():
