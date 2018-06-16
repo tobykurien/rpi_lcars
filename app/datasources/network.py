@@ -7,9 +7,11 @@ def get_ip_address_string():
     Consolidates a list of IP addresses into a string, stripping out any blank
     entries as well as the local `127.0.0.1` entry.
     """
-    return reduce(lambda str, addr: str + ', ' + addr,
-                  get_ip_addresses())
 
+    try:
+        return get_ip_addresses().join(' ')
+    except:
+        return ''
 
 def get_ip_addresses():
     """
