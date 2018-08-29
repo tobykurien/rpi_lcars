@@ -9,7 +9,7 @@ def get_ip_address_string():
     """
 
     try:
-        return get_ip_addresses().join(' ')
+        return ' '.join(get_ip_addresses())
     except:
         return ''
 
