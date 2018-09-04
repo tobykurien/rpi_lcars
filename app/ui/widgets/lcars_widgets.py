@@ -5,7 +5,7 @@ from pygame.mixer import Sound
 
 from ui.widgets.sprite import LcarsWidget
 from ui import colours
-
+import config
 
 class LcarsElbow(LcarsWidget):
     """The LCARS corner elbow - not currently used"""
@@ -16,7 +16,9 @@ class LcarsElbow(LcarsWidget):
     STYLE_TOP_RIGHT = 3
     
     def __init__(self, colour, style, pos, handler=None):
-        image = pygame.image.load("assets/elbow.png").convert()
+        image = pygame.image.load("assets/elbow.png").convert_alpha()
+        # alpha=255
+        # image.fill((255, 255, 255, alpha), None, pygame.BLEND_RGBA_MULT)
         if (style == LcarsElbow.STYLE_BOTTOM_LEFT):
             image = pygame.transform.flip(image, False, True)
         elif (style == LcarsElbow.STYLE_BOTTOM_RIGHT):
@@ -50,11 +52,11 @@ class LcarsButton(LcarsWidget):
 
     def __init__(self, colour, pos, text, handler=None, rectSize=None):
         if rectSize == None:
-            image = pygame.image.load("assets/button.png").convert()
+            image = pygame.image.load("assets/button.png").convert_alpha()
             size = (image.get_rect().width, image.get_rect().height)
         else:
             size = rectSize
-            image = pygame.Surface(rectSize).convert()
+            image = pygame.Surface(rectSize).convert_alpha()
             image.fill(colour)
 
         self.colour = colour
@@ -68,13 +70,15 @@ class LcarsButton(LcarsWidget):
         LcarsWidget.__init__(self, colour, pos, size, handler)
         self.applyColour(colour)
         self.highlighted = False
-        self.beep = Sound("assets/audio/panel/202.wav")
+        if config.SOUND:
+            self.beep = Sound("assets/audio/panel/202.wav")
 
     def handleEvent(self, event, clock):
         if (event.type == MOUSEBUTTONDOWN and self.rect.collidepoint(event.pos)):
             self.applyColour(colours.WHITE)
             self.highlighted = True
-            self.beep.play()
+            if config.SOUND:
+                self.beep.play()
 
         if (event.type == MOUSEBUTTONUP and self.highlighted):
             self.applyColour(self.colour)

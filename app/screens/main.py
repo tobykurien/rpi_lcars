@@ -11,6 +11,7 @@ from ui.widgets.sprite import LcarsMoveToMouse
 
 from datasources.network import get_ip_address_string
 
+import config
 
 class ScreenMain(LcarsScreen):
     def setup(self, all_sprites):
@@ -20,13 +21,17 @@ class ScreenMain(LcarsScreen):
         # panel text
         all_sprites.add(LcarsText(colours.BLACK, (15, 44), "LCARS 105"),
                         layer=1)
+        
+        all_sprites.add(LcarsElbow(colours.GREY_BLUE, 2,(20,20)),
+                        layer=1)
+                        
         all_sprites.add(LcarsText(colours.ORANGE, (0, 135), "HOME AUTOMATION", 2),
                         layer=1)
         all_sprites.add(LcarsBlockMedium(colours.RED_BROWN, (145, 16), "LIGHTS"),
                         layer=1)
         all_sprites.add(LcarsBlockSmall(colours.ORANGE, (211, 16), "CAMERAS"),
                         layer=1)
-        all_sprites.add(LcarsBlockLarge(colours.BEIGE, (249, 16), "ENERGY"),
+        all_sprites.add(LcarsBlockLarge(colours.BEIGE, (249, 16), "ENERGY", self.logoutHandler),
                         layer=1)
 
         self.ip_address = LcarsText(colours.BLACK, (444, 520),
@@ -45,7 +50,7 @@ class ScreenMain(LcarsScreen):
         self.info_text = all_sprites.get_sprites_from_layer(3)
 
         # date display
-        self.stardate = LcarsText(colours.BLUE, (12, 380), "STAR DATE 2711.05 17:54:32", 1.5)
+        self.stardate = LcarsText(colours.BLUE, (12, 380), "STAR DATE 2311.05 17:54:32", 1.5)
         self.lastClockUpdate = 0
         all_sprites.add(self.stardate, layer=1)
 
@@ -57,6 +62,9 @@ class ScreenMain(LcarsScreen):
         all_sprites.add(LcarsButton(colours.PURPLE, (107, 262), "GAUGES", self.gaugesHandler),
                         layer=4)
         all_sprites.add(LcarsButton(colours.PEACH, (107, 398), "WEATHER", self.weatherHandler),
+                        layer=4)
+
+        all_sprites.add(LcarsButton(colours.PEACH, (50, 534), "HOME", self.homeHandler),
                         layer=4)
 
         # gadgets
@@ -75,8 +83,9 @@ class ScreenMain(LcarsScreen):
         all_sprites.add(self.weather, layer=2)
 
         #all_sprites.add(LcarsMoveToMouse(colours.WHITE), layer=1)
-        self.beep1 = Sound("assets/audio/panel/201.wav")
-        Sound("assets/audio/panel/220.wav").play()
+        if config.SOUND:
+            self.beep1 = Sound("assets/audio/panel/201.wav")
+            Sound("assets/audio/panel/220.wav").play()
 
     def update(self, screenSurface, fpsClock):
         if pygame.time.get_ticks() - self.lastClockUpdate > 1000:
@@ -86,7 +95,8 @@ class ScreenMain(LcarsScreen):
 
     def handleEvents(self, event, fpsClock):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            self.beep1.play()
+            if config.SOUND:
+                self.beep1.play()
 
         if event.type == pygame.MOUSEBUTTONUP:
             return False
@@ -95,6 +105,10 @@ class ScreenMain(LcarsScreen):
         if self.info_text[0].visible:
             for sprite in self.info_text:
                 sprite.visible = False
+
+    def showInfoText(self):
+        for sprite in self.info_text:
+            sprite.visible = True
 
     def gaugesHandler(self, item, event, clock):
         self.hideInfoText()
@@ -114,6 +128,12 @@ class ScreenMain(LcarsScreen):
         self.dashboard.visible = False
         self.weather.visible = True
 
+    def homeHandler(self, item, event, clock):
+        self.showInfoText()
+        self.sensor_gadget.visible = False
+        self.dashboard.visible = False
+        self.weather.visible = False
+        
     def logoutHandler(self, item, event, clock):
         from screens.authorize import ScreenAuthorize
         self.loadScreen(ScreenAuthorize())

@@ -1,4 +1,6 @@
+import sys
 import pygame
+import config
 from pygame.mixer import Sound
 
 from ui import colours
@@ -38,16 +40,20 @@ class ScreenAuthorize(LcarsScreen):
         all_sprites.add(LcarsButton(colours.GREY_BLUE, (320, 550), "7", self.num_7), layer=2)
         all_sprites.add(LcarsButton(colours.GREY_BLUE, (370, 550), "8", self.num_8), layer=2)
 
+        if config.DEV_MODE:
+            all_sprites.add(LcarsButton(colours.GREY_BLUE, (0, 770), "X", self.exitHandler, (30, 30)), layer=2)
+        
         self.layer1 = all_sprites.get_sprites_from_layer(1)
         self.layer2 = all_sprites.get_sprites_from_layer(2)
 
         # sounds
-        Sound("assets/audio/panel/215.wav").play()
-        self.sound_granted = Sound("assets/audio/accessing.wav")
-        self.sound_beep1 = Sound("assets/audio/panel/201.wav")
-        self.sound_denied = Sound("assets/audio/access_denied.wav")
-        self.sound_deny1 = Sound("assets/audio/deny_1.wav")
-        self.sound_deny2 = Sound("assets/audio/deny_2.wav")
+        if config.SOUND:
+            Sound("assets/audio/panel/215.wav").play()
+            self.sound_granted = Sound("assets/audio/accessing.wav")
+            self.sound_beep1 = Sound("assets/audio/panel/201.wav")
+            self.sound_denied = Sound("assets/audio/access_denied.wav")
+            self.sound_deny1 = Sound("assets/audio/deny_1.wav")
+            self.sound_deny2 = Sound("assets/audio/deny_2.wav")
 
         ############
         # SET PIN CODE WITH THIS VARIABLE
@@ -67,22 +73,26 @@ class ScreenAuthorize(LcarsScreen):
     def handleEvents(self, event, fpsClock):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Play sound
-            self.sound_beep1.play()
+            if config.SOUND:
+                self.sound_beep1.play()
 
         if event.type == pygame.MOUSEBUTTONUP:
             if (not self.layer2[0].visible):
                 for sprite in self.layer1: sprite.visible = False
                 for sprite in self.layer2: sprite.visible = True
-                Sound("assets/audio/enter_authorization_code.wav").play()
+                if config.SOUND:
+                    Sound("assets/audio/enter_authorization_code.wav").play()
             elif (self.pin_i == len(str(self.pin))):
                 # Ran out of button presses
                 if (self.correct == 4):
-                    self.sound_granted.play()
+                    if config.SOUND:
+                        self.sound_granted.play()
                     from screens.main import ScreenMain
                     self.loadScreen(ScreenMain())
                 else:
-                    self.sound_deny2.play()
-                    self.sound_denied.play()
+                    if config.SOUND:
+                        self.sound_deny2.play()
+                        self.sound_denied.play()
                     self.reset()
 
         return False
@@ -134,3 +144,6 @@ class ScreenAuthorize(LcarsScreen):
             self.correct += 1
 
         self.pin_i += 1
+
+    def exitHandler(self, item, event, clock):
+        sys.exit()
