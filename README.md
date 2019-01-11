@@ -10,12 +10,15 @@ The code is an example of implementing a custom MovieOS-style interface for your
 
 # Global Config
 
-- [UI_PLACEMENT_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/lcars.py#L5) - if set to ```True```, allows you to long-press any widget (except background items) and then drag them to any location. When you release the widget, it's new top and left co-ordinates are printed in the console, which you can use in your code to place the widget there.
-- [DEV_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/lcars.py#L8) - if set to ```True```, will show the mouse cursor, for example. The mouse cursor is useful during development (on a non-touch screen).
+- [UI_PLACEMENT_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L2) - if set to ```True```, allows you to long-press any widget (except background items) and then drag them to any location. When you release the widget, it's new top and left co-ordinates are printed in the console, which you can use in your code to place the widget there.
+- [DEV_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L6) - if set to ```True```, will show the mouse cursor and a close button, for example. The mouse cursor is useful during development (on a non-touch screen).
+- [SOUND](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L7)
+	- if set to ```False```, will disable all sounds and prevent errors if a sound
+		device isn't present
 
 # Usage
 
-- The starting point for modifying this interface to your needs is [the initial Screen that is loaded](https://github.com/tobykurien/rpi_lcars/blob/master/app/lcars.py#L11), which is ```ScreenAuthorize```. The Screens are defined in the ```screens``` folder.
+- The starting point for modifying this interface to your needs is [the initial Screen that is loaded](https://github.com/tobykurien/rpi_lcars/blob/master/app/lcars.py#L6), which is ```ScreenAuthorize```. The Screens are defined in the ```screens``` folder.
 - Screens extend the [```LcarsScreen```](https://github.com/tobykurien/rpi_lcars/blob/master/app/ui/widgets/screen.py) class and define a ```setup()``` method, and optionally the ```handleEvents()``` and ```update()``` methods.
 - The ```setup()``` method initializes the widgets to display. See [lcars_widgets.py](https://github.com/tobykurien/rpi_lcars/blob/master/app/ui/widgets/lcars_widgets.py) for some of the implemented widgets. 
 - The ```handleEvents()``` method is used to respond to clicks. If this method returns ```True```, the event is "consumed", otherwise other widgets get a chance to act on the event. 
