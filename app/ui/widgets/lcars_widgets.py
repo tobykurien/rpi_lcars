@@ -1,11 +1,10 @@
 import pygame
 from pygame.font import Font
 from pygame.locals import *
-from pygame.mixer import Sound
 
+from ui.utils.sound import Sound
 from ui.widgets.sprite import LcarsWidget
 from ui import colours
-
 
 class LcarsElbow(LcarsWidget):
     """The LCARS corner elbow - not currently used"""
@@ -16,7 +15,9 @@ class LcarsElbow(LcarsWidget):
     STYLE_TOP_RIGHT = 3
     
     def __init__(self, colour, style, pos, handler=None):
-        image = pygame.image.load("assets/elbow.png").convert()
+        image = pygame.image.load("assets/elbow.png").convert_alpha()
+        # alpha=255
+        # image.fill((255, 255, 255, alpha), None, pygame.BLEND_RGBA_MULT)
         if (style == LcarsElbow.STYLE_BOTTOM_LEFT):
             image = pygame.transform.flip(image, False, True)
         elif (style == LcarsElbow.STYLE_BOTTOM_RIGHT):
@@ -50,11 +51,11 @@ class LcarsButton(LcarsWidget):
 
     def __init__(self, colour, pos, text, handler=None, rectSize=None):
         if rectSize == None:
-            image = pygame.image.load("assets/button.png").convert()
+            image = pygame.image.load("assets/button.png").convert_alpha()
             size = (image.get_rect().width, image.get_rect().height)
         else:
             size = rectSize
-            image = pygame.Surface(rectSize).convert()
+            image = pygame.Surface(rectSize).convert_alpha()
             image.fill(colour)
 
         self.colour = colour

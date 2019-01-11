@@ -1,13 +1,9 @@
 from datetime import datetime
-import pygame
-from pygame.mixer import Sound
 
-from ui import colours
 from ui.widgets.background import LcarsBackgroundImage, LcarsImage
 from ui.widgets.gifimage import LcarsGifImage
 from ui.widgets.lcars_widgets import *
 from ui.widgets.screen import LcarsScreen
-from ui.widgets.sprite import LcarsMoveToMouse
 
 from datasources.network import get_ip_address_string
 
@@ -20,6 +16,7 @@ class ScreenMain(LcarsScreen):
         # panel text
         all_sprites.add(LcarsText(colours.BLACK, (15, 44), "LCARS 105"),
                         layer=1)
+                        
         all_sprites.add(LcarsText(colours.ORANGE, (0, 135), "HOME AUTOMATION", 2),
                         layer=1)
         all_sprites.add(LcarsBlockMedium(colours.RED_BROWN, (145, 16), "LIGHTS"),
@@ -45,7 +42,7 @@ class ScreenMain(LcarsScreen):
         self.info_text = all_sprites.get_sprites_from_layer(3)
 
         # date display
-        self.stardate = LcarsText(colours.BLUE, (12, 380), "STAR DATE 2711.05 17:54:32", 1.5)
+        self.stardate = LcarsText(colours.BLUE, (12, 380), "STAR DATE 2311.05 17:54:32", 1.5)
         self.lastClockUpdate = 0
         all_sprites.add(self.stardate, layer=1)
 
@@ -57,6 +54,8 @@ class ScreenMain(LcarsScreen):
         all_sprites.add(LcarsButton(colours.PURPLE, (107, 262), "GAUGES", self.gaugesHandler),
                         layer=4)
         all_sprites.add(LcarsButton(colours.PEACH, (107, 398), "WEATHER", self.weatherHandler),
+                        layer=4)
+        all_sprites.add(LcarsButton(colours.PEACH, (108, 536), "HOME", self.homeHandler),
                         layer=4)
 
         # gadgets
@@ -96,6 +95,10 @@ class ScreenMain(LcarsScreen):
             for sprite in self.info_text:
                 sprite.visible = False
 
+    def showInfoText(self):
+        for sprite in self.info_text:
+            sprite.visible = True
+
     def gaugesHandler(self, item, event, clock):
         self.hideInfoText()
         self.sensor_gadget.visible = False
@@ -114,6 +117,12 @@ class ScreenMain(LcarsScreen):
         self.dashboard.visible = False
         self.weather.visible = True
 
+    def homeHandler(self, item, event, clock):
+        self.showInfoText()
+        self.sensor_gadget.visible = False
+        self.dashboard.visible = False
+        self.weather.visible = False
+        
     def logoutHandler(self, item, event, clock):
         from screens.authorize import ScreenAuthorize
         self.loadScreen(ScreenAuthorize())

@@ -1,7 +1,9 @@
+import sys
 import pygame
-from pygame.mixer import Sound
+import config
 
 from ui import colours
+from ui.utils.sound import Sound
 from ui.widgets.background import LcarsBackgroundImage
 from ui.widgets.gifimage import LcarsGifImage
 from ui.widgets.lcars_widgets import LcarsText
@@ -38,6 +40,9 @@ class ScreenAuthorize(LcarsScreen):
         all_sprites.add(LcarsButton(colours.GREY_BLUE, (320, 550), "7", self.num_7), layer=2)
         all_sprites.add(LcarsButton(colours.GREY_BLUE, (370, 550), "8", self.num_8), layer=2)
 
+        if config.DEV_MODE:
+            all_sprites.add(LcarsButton(colours.GREY_BLUE, (0, 770), "X", self.exitHandler, (30, 30)), layer=2)
+        
         self.layer1 = all_sprites.get_sprites_from_layer(1)
         self.layer2 = all_sprites.get_sprites_from_layer(2)
 
@@ -134,3 +139,6 @@ class ScreenAuthorize(LcarsScreen):
             self.correct += 1
 
         self.pin_i += 1
+
+    def exitHandler(self, item, event, clock):
+        sys.exit()
