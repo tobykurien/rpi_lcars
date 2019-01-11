@@ -16,9 +16,6 @@ class ScreenMain(LcarsScreen):
         # panel text
         all_sprites.add(LcarsText(colours.BLACK, (15, 44), "LCARS 105"),
                         layer=1)
-        
-        all_sprites.add(LcarsElbow(colours.GREY_BLUE, 2,(20,20)),
-                        layer=1)
                         
         all_sprites.add(LcarsText(colours.ORANGE, (0, 135), "HOME AUTOMATION", 2),
                         layer=1)
@@ -26,7 +23,7 @@ class ScreenMain(LcarsScreen):
                         layer=1)
         all_sprites.add(LcarsBlockSmall(colours.ORANGE, (211, 16), "CAMERAS"),
                         layer=1)
-        all_sprites.add(LcarsBlockLarge(colours.BEIGE, (249, 16), "ENERGY", self.logoutHandler),
+        all_sprites.add(LcarsBlockLarge(colours.BEIGE, (249, 16), "ENERGY"),
                         layer=1)
 
         self.ip_address = LcarsText(colours.BLACK, (444, 520),
@@ -58,8 +55,7 @@ class ScreenMain(LcarsScreen):
                         layer=4)
         all_sprites.add(LcarsButton(colours.PEACH, (107, 398), "WEATHER", self.weatherHandler),
                         layer=4)
-
-        all_sprites.add(LcarsButton(colours.PEACH, (50, 534), "HOME", self.homeHandler),
+        all_sprites.add(LcarsButton(colours.PEACH, (108, 536), "HOME", self.homeHandler),
                         layer=4)
 
         # gadgets
