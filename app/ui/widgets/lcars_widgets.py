@@ -1,11 +1,10 @@
 import pygame
 from pygame.font import Font
 from pygame.locals import *
-from pygame.mixer import Sound
 
+from ui.utils.sound import Sound
 from ui.widgets.sprite import LcarsWidget
 from ui import colours
-import config
 
 class LcarsElbow(LcarsWidget):
     """The LCARS corner elbow - not currently used"""
@@ -70,15 +69,13 @@ class LcarsButton(LcarsWidget):
         LcarsWidget.__init__(self, colour, pos, size, handler)
         self.applyColour(colour)
         self.highlighted = False
-        if config.SOUND:
-            self.beep = Sound("assets/audio/panel/202.wav")
+        self.beep = Sound("assets/audio/panel/202.wav")
 
     def handleEvent(self, event, clock):
         if (event.type == MOUSEBUTTONDOWN and self.rect.collidepoint(event.pos)):
             self.applyColour(colours.WHITE)
             self.highlighted = True
-            if config.SOUND:
-                self.beep.play()
+            self.beep.play()
 
         if (event.type == MOUSEBUTTONUP and self.highlighted):
             self.applyColour(self.colour)

@@ -1,17 +1,12 @@
 from datetime import datetime
-import pygame
-from pygame.mixer import Sound
 
-from ui import colours
 from ui.widgets.background import LcarsBackgroundImage, LcarsImage
 from ui.widgets.gifimage import LcarsGifImage
 from ui.widgets.lcars_widgets import *
 from ui.widgets.screen import LcarsScreen
-from ui.widgets.sprite import LcarsMoveToMouse
 
 from datasources.network import get_ip_address_string
 
-import config
 
 class ScreenMain(LcarsScreen):
     def setup(self, all_sprites):
@@ -83,9 +78,8 @@ class ScreenMain(LcarsScreen):
         all_sprites.add(self.weather, layer=2)
 
         #all_sprites.add(LcarsMoveToMouse(colours.WHITE), layer=1)
-        if config.SOUND:
-            self.beep1 = Sound("assets/audio/panel/201.wav")
-            Sound("assets/audio/panel/220.wav").play()
+        self.beep1 = Sound("assets/audio/panel/201.wav")
+        Sound("assets/audio/panel/220.wav").play()
 
     def update(self, screenSurface, fpsClock):
         if pygame.time.get_ticks() - self.lastClockUpdate > 1000:
@@ -95,8 +89,7 @@ class ScreenMain(LcarsScreen):
 
     def handleEvents(self, event, fpsClock):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if config.SOUND:
-                self.beep1.play()
+            self.beep1.play()
 
         if event.type == pygame.MOUSEBUTTONUP:
             return False
