@@ -12,8 +12,7 @@ The code is an example of implementing a custom MovieOS-style interface for your
 
 - [UI_PLACEMENT_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L2) - if set to ```True```, allows you to long-press any widget (except background items) and then drag them to any location. When you release the widget, it's new top and left co-ordinates are printed in the console, which you can use in your code to place the widget there.
 - [DEV_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L6) - if set to ```True```, will show the mouse cursor and a close button, for example. The mouse cursor is useful during development (on a non-touch screen).
-- [SOUND](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L7)
-	- if set to ```False```, will disable all sounds and prevent errors if a sound
+- [SOUND](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L7) - if set to ```False```, will disable all sounds and prevent errors if a sound
 		device isn't present
 
 # Usage
