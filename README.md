@@ -24,6 +24,7 @@ The code is an example of implementing a custom MovieOS-style interface for your
 - The ```handleEvents()``` method is used to respond to clicks. If this method returns ```True```, the event is "consumed", otherwise other widgets get a chance to act on the event. 
 - The ```update()``` method is called once per frame, allowing the Screen to update how it is drawn. Code in here needs to be highly optimized. This method is called *after* the widgets are drawn, but there is a ```pre_update()``` method you can override to draw before the widgets get drawn.
 - The method ```loadScreen()``` can be called to open a new Screen. There is no backstack, so you will have to manage the Screen flows manually.
+- To use the [```SOUND```](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L7) config, you need to use [```ui.utils.sound.Sound```](https://github.com/tobykurien/rpi_lcars/blob/master/app/ui/utils/sound.py#L8) instead of the normal ```pygame.mixer.Sound```.
 
 # Installation
 
