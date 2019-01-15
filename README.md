@@ -12,9 +12,7 @@ The code is an example of implementing a custom MovieOS-style interface for your
 
 - [UI_PLACEMENT_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L2) - if set to ```True```, allows you to long-press any widget (except background items) and then drag them to any location. When you release the widget, it's new top and left co-ordinates are printed in the console, which you can use in your code to place the widget there.
 - [DEV_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L6) - if set to ```True```, will show the mouse cursor and a close button, for example. The mouse cursor is useful during development (on a non-touch screen).
-- [SOUND](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L7)
-	- if set to ```False```, will disable all sounds and prevent errors if a sound
-		device isn't present
+- [SOUND](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L7) - if set to ```False```, will disable all sounds and prevent errors if a sound device isn't present
 
 # Usage
 
@@ -24,6 +22,7 @@ The code is an example of implementing a custom MovieOS-style interface for your
 - The ```handleEvents()``` method is used to respond to clicks. If this method returns ```True```, the event is "consumed", otherwise other widgets get a chance to act on the event. 
 - The ```update()``` method is called once per frame, allowing the Screen to update how it is drawn. Code in here needs to be highly optimized. This method is called *after* the widgets are drawn, but there is a ```pre_update()``` method you can override to draw before the widgets get drawn.
 - The method ```loadScreen()``` can be called to open a new Screen. There is no backstack, so you will have to manage the Screen flows manually.
+- To use the [```SOUND```](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L7) config, you need to use [```ui.utils.sound.Sound```](https://github.com/tobykurien/rpi_lcars/blob/master/app/ui/utils/sound.py#L8) instead of the normal ```pygame.mixer.Sound```.
 
 # Installation
 
