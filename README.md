@@ -37,7 +37,7 @@ The code is an example of implementing a custom MovieOS-style interface for your
 
 ```
 cd /home/pi/rpi_lcars/app
-sudo -u pi xinit /usr/bin/python lcars.py
+sudo -u pi xinit /usr/bin/python3 lcars.py
 ``` 
 The above assumes you want to run the interface from the ```/home/pi/rpi_lcars``` folder as the ```pi``` user. To run as root, simply omit the ```sudo -u pi``` bit.
 
