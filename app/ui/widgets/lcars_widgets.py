@@ -72,12 +72,12 @@ class LcarsButton(LcarsWidget):
         self.beep = Sound("assets/audio/panel/202.wav")
 
     def handleEvent(self, event, clock):
-        if (event.type == MOUSEBUTTONDOWN and self.rect.collidepoint(event.pos)):
+        if (event.type == MOUSEBUTTONDOWN and self.rect.collidepoint(event.pos) and self.visible == True):
             self.applyColour(colours.WHITE)
             self.highlighted = True
             self.beep.play()
 
-        if (event.type == MOUSEBUTTONUP and self.highlighted):
+        if (event.type == MOUSEBUTTONUP and self.highlighted and self.visible == True):
             self.applyColour(self.colour)
            
         return LcarsWidget.handleEvent(self, event, clock)
