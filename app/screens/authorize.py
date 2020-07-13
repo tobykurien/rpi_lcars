@@ -31,14 +31,16 @@ class ScreenAuthorize(LcarsScreen):
         #all_sprites.add(LcarsText(colours.BLUE, (390, -1), "FAILED ATTEMPTS WILL BE REPORTED", 1.5),layer=1)
 
 
-        all_sprites.add(LcarsButton(colours.GREY_BLUE, (320, 130), "1", self.num_1), layer=2)
-        all_sprites.add(LcarsButton(colours.GREY_BLUE, (370, 130), "2", self.num_2), layer=2)
-        all_sprites.add(LcarsButton(colours.GREY_BLUE, (320, 270), "3", self.num_3), layer=2)
-        all_sprites.add(LcarsButton(colours.GREY_BLUE, (370, 270), "4", self.num_4), layer=2)
-        all_sprites.add(LcarsButton(colours.GREY_BLUE, (320, 410), "5", self.num_5), layer=2)
-        all_sprites.add(LcarsButton(colours.GREY_BLUE, (370, 410), "6", self.num_6), layer=2)
-        all_sprites.add(LcarsButton(colours.GREY_BLUE, (320, 550), "7", self.num_7), layer=2)
-        all_sprites.add(LcarsButton(colours.GREY_BLUE, (370, 550), "8", self.num_8), layer=2)
+        all_sprites.add(LcarsButton(colours.GREY_BLUE, (320, 60), "1", self.num_1), layer=2)
+        all_sprites.add(LcarsButton(colours.GREY_BLUE, (370, 60), "2", self.num_2), layer=2)
+        all_sprites.add(LcarsButton(colours.GREY_BLUE, (320, 200), "3", self.num_3), layer=2)
+        all_sprites.add(LcarsButton(colours.GREY_BLUE, (370, 200), "4", self.num_4), layer=2)
+        all_sprites.add(LcarsButton(colours.GREY_BLUE, (320, 340), "5", self.num_5), layer=2)
+        all_sprites.add(LcarsButton(colours.GREY_BLUE, (370, 340), "6", self.num_6), layer=2)
+        all_sprites.add(LcarsButton(colours.GREY_BLUE, (320, 480), "7", self.num_7), layer=2)
+        all_sprites.add(LcarsButton(colours.GREY_BLUE, (370, 480), "8", self.num_8), layer=2)
+        all_sprites.add(LcarsButton(colours.GREY_BLUE, (320, 610), "9", self.num_9), layer=2)
+        all_sprites.add(LcarsButton(colours.GREY_BLUE, (370, 610), "0", self.num_0), layer=2)
 
         if config.DEV_MODE:
             all_sprites.add(LcarsButton(colours.GREY_BLUE, (0, 770), "X", self.exitHandler, (30, 30)), layer=2)
@@ -57,7 +59,7 @@ class ScreenAuthorize(LcarsScreen):
         ############
         # SET PIN CODE WITH THIS VARIABLE
         ############
-        self.pin = 1234
+        self.pin = '1234'
         ############
         self.reset()
 
@@ -81,7 +83,7 @@ class ScreenAuthorize(LcarsScreen):
                 Sound("assets/audio/enter_authorization_code.wav").play()
             elif (self.pin_i == len(str(self.pin))):
                 # Ran out of button presses
-                if (self.correct == 4):
+                if (self.correct == len(self.pin)):
                     self.sound_granted.play()
                     from screens.main import ScreenMain
                     self.loadScreen(ScreenMain())
@@ -136,6 +138,18 @@ class ScreenAuthorize(LcarsScreen):
 
     def num_8(self, item, event, clock):
         if str(self.pin)[self.pin_i] == '8':
+            self.correct += 1
+
+        self.pin_i += 1
+
+    def num_9(self, item, event, clock):
+        if str(self.pin)[self.pin_i] == '9':
+            self.correct += 1
+
+        self.pin_i += 1
+
+    def num_0(self, item, event, clock):
+        if str(self.pin)[self.pin_i] == '0':
             self.correct += 1
 
         self.pin_i += 1
