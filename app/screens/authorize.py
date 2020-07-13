@@ -56,11 +56,6 @@ class ScreenAuthorize(LcarsScreen):
         self.sound_deny1 = Sound("assets/audio/deny_1.wav")
         self.sound_deny2 = Sound("assets/audio/deny_2.wav")
 
-        ############
-        # SET PIN CODE WITH THIS VARIABLE
-        ############
-        #self.pin = '1234'
-        ############
         self.reset()
 
     def reset(self):
