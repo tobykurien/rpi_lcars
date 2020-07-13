@@ -14,6 +14,7 @@ The code is an example of implementing a custom MovieOS-style interface for your
 - [DEV_MODE](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L6) - if set to ```True```, will show the mouse cursor and a close button, for example. The mouse cursor is useful during development (on a non-touch screen).
 - [SOUND](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L7) - if set to ```False```, will disable all sounds and prevent errors if a sound device isn't present
 - [PIN](https://github.com/tobykurien/rpi_lcars/blob/master/app/config.py#L8) - Set autorisation code. For now only numbers are supported.
+
 # Usage
 
 - The starting point for modifying this interface to your needs is [the initial Screen that is loaded](https://github.com/tobykurien/rpi_lcars/blob/master/app/lcars.py#L6), which is ```ScreenAuthorize```. The Screens are defined in the ```screens``` folder.
