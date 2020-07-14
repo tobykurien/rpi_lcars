@@ -1,4 +1,6 @@
 import pygame
+import globalvars
+
 class LcarsScreen:
     """
     Manage a UI screen
@@ -56,3 +58,23 @@ class LcarsScreen:
         nextScreen = self.nextScreen
         self.nextScreen = None
         return nextScreen
+        
+    def callScreen(self, newScreen, params={}):
+        """
+        Call child window. For example on screensaver timeout call ScreenAuthorize
+        or ScreenSaver
+        """
+        globalvars.windowStack.append(self)
+        self.nextScreen = newScreen
+        self.nextScreen.params = params
+
+    def returnScreen(self):
+        """
+        Return to caller screen. For example return from ScreenSaver or
+        from ScreenAuthoroze
+        """
+        newScreen = globalvars.windowStack.pop()
+        self.nextScreen = newScreen
+
+
+        

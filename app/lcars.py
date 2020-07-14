@@ -1,11 +1,17 @@
-from screens.authorize import ScreenAuthorize
+from screens.main import ScreenMain
 from ui.ui import UserInterface
+
 import config
+import globalvars
 
 if __name__ == "__main__":
-    firstScreen = ScreenAuthorize()
+
+    globalvars.Authorised = False
+    
+    firstScreen = ScreenMain()
     ui = UserInterface(firstScreen, config.RESOLUTION, config.UI_PLACEMENT_MODE, config.FPS, config.DEV_MODE,
                        config.SOUND)
 
     while (True):
         ui.tick()
+

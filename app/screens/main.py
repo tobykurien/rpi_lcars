@@ -7,9 +7,20 @@ from ui.widgets.screen import LcarsScreen
 
 from datasources.network import get_ip_address_string
 
+import globalvars
+import config
+import sys
+
+from screens.authorize import ScreenAuthorize
 
 class ScreenMain(LcarsScreen):
     def setup(self, all_sprites):
+        globalvars.lastEventTime = datetime.now().timestamp() + config.SCREENSAVERTIME
+        
+        if globalvars.Authorised == False:
+            self.callScreen(ScreenAuthorize())
+        
+        
         all_sprites.add(LcarsBackgroundImage("assets/lcars_screen_1b.png"),
                         layer=0)
 
@@ -77,13 +88,21 @@ class ScreenMain(LcarsScreen):
         self.beep1 = Sound("assets/audio/panel/201.wav")
         Sound("assets/audio/panel/220.wav").play()
 
-    def update(self, screenSurface, fpsClock):
+    def update(self, screenSurface, fpsClock):            
+
+        if globalvars.lastEventTime < datetime.now().timestamp() :
+            globalvars.Authorised = False
+            self.callScreen(ScreenAuthorize())
+
         if pygame.time.get_ticks() - self.lastClockUpdate > 1000:
             self.stardate.setText("STAR DATE {}".format(datetime.now().strftime("%d%m.%y %H:%M:%S")))
             self.lastClockUpdate = pygame.time.get_ticks()
         LcarsScreen.update(self, screenSurface, fpsClock)
 
     def handleEvents(self, event, fpsClock):
+
+        globalvars.lastEventTime = datetime.now().timestamp() + config.SCREENSAVERTIME
+        
         if event.type == pygame.MOUSEBUTTONDOWN:
             self.beep1.play()
 
@@ -124,7 +143,9 @@ class ScreenMain(LcarsScreen):
         self.weather.visible = False
         
     def logoutHandler(self, item, event, clock):
-        from screens.authorize import ScreenAuthorize
-        self.loadScreen(ScreenAuthorize())
+        #from screens.authorize import ScreenAuthorize
+        #self.loadScreen(ScreenAuthorize())
+        globalvars.Authorised = False
+        self.callScreen(ScreenAuthorize())
 
 

@@ -1,6 +1,11 @@
 import sys
 import pygame
 import config
+import globalvars
+
+from datetime import datetime
+
+from screens.screensaver import ScreenSaver
 
 from ui import colours
 from ui.utils.sound import Sound
@@ -66,7 +71,15 @@ class ScreenAuthorize(LcarsScreen):
         for sprite in self.layer1: sprite.visible = True
         for sprite in self.layer2: sprite.visible = False
 
+    def update(self, screenSurface, fpsClock):
+        if (globalvars.lastEventTime < datetime.now().timestamp()):
+            self.callScreen(ScreenSaver())
+
+
     def handleEvents(self, event, fpsClock):
+        
+        globalvars.lastEventTime = datetime.now().timestamp() + config.SCREENSAVERTIME
+        
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Play sound
             self.sound_beep1.play()
@@ -80,8 +93,10 @@ class ScreenAuthorize(LcarsScreen):
                 # Ran out of button presses
                 if (self.correct == len(config.PIN)):
                     self.sound_granted.play()
-                    from screens.main import ScreenMain
-                    self.loadScreen(ScreenMain())
+                    #from screens.main import ScreenMain
+                    #self.loadScreen(ScreenMain())
+                    globalvars.Authorised = True
+                    self.returnScreen()
                 else:
                     self.sound_deny2.play()
                     self.sound_denied.play()

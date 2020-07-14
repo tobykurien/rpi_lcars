@@ -31,6 +31,13 @@ class UserInterface:
         self.running = True
 
     def update(self):
+        
+        newScreen = self.screen.getNextScreen()
+        if (newScreen):
+            self.all_sprites.empty()
+            newScreen.setup(self.all_sprites)
+            self.screen = newScreen
+
         self.screen.pre_update(self.screenSurface, self.fpsClock)
         self.all_sprites.update(self.screenSurface)
         self.screen.update(self.screenSurface, self.fpsClock)
