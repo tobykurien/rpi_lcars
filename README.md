@@ -52,7 +52,7 @@ The above assumes you want to run the interface from the ```/home/pi/rpi_lcars``
 # Credits
 
 - LCARS graphical user interface is copyright [CBS Studios Inc.](http://www.cbs.com/) and is subject to [the fair use statute](https://en.wikipedia.org/wiki/LCARS#Legal)
-- LCARS images and audio assets from [lcarscom.net](http://www.lcarscom.net) and audio assets from [trekcore.com/audio/](http://trekcore.com/audio/)
+- LCARS images and audio assets from (what used to be) lcarscom.net and audio assets from [trekcore.com/audio/](http://trekcore.com/audio/)
 - Sample weather image from the [SABC](http://www.sabc.co.za)
 
 
