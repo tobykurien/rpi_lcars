@@ -1,3 +1,8 @@
 #!/bin/sh
 cd app
-xinit /usr/bin/python3 lcars.py
+
+if [-z $DISPLAY]; then
+  xinit /usr/bin/python3 lcars.py
+else
+  /usr/bin/python3 lcars.py
+fi
