@@ -1,7 +1,7 @@
 # fork-changes
 just a sloppy fork to show stuffz from https://github.com/CyberPunkMetalHead/Binance-volatility-trading-bot
 change the paths to your log file in app/screens/main.py accordingly
-oh.. and you may want https://github.com/hhenne1/binanance-balance to get your wallet balance
+oh.. and you may want https://github.com/hhenne1/binance-balance to get your wallet balance
 
 
 
