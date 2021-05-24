@@ -6,14 +6,14 @@ from ui.utils import sound
 
 class UserInterface:
     def __init__(self, screen, resolution=(800,480),
-                 ui_placement_mode=False, fps=60, dev_mode=False, audio=True,
+                 ui_placement_mode=False, fps=60, dev_mode=False, audio=False,
                  audio_params=(22050, -8, 1, 1024)):
         # init system
         pygame.display.init()
         pygame.font.init()
         sound.init(audio_params)
 
-        self.screenSurface = pygame.display.set_mode(resolution) #, pygame.FULLSCREEN)
+        self.screenSurface = pygame.display.set_mode((resolution), pygame.FULLSCREEN)
         self.fpsClock = pygame.time.Clock()
         self.fps = fps
         pygame.display.set_caption("LCARS")
