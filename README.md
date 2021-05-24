@@ -1,3 +1,13 @@
+# fork-changes
+change the paths to your log file in app/screens/main.py accordingly
+
+
+
+
+
+
+
+
 # RaspberryPi LCARS Interface
 
 Star Trek [LCARS](https://en.wikipedia.org/wiki/LCARS) interface for [Raspberry Pi](https://raspberrypi.org/) using [Pygame](http://www.pygame.org). 
